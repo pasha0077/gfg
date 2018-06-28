@@ -27,6 +27,27 @@ void SortStack(stack<int>& s)
 	}
 }
 
+void SortStackUsingStack(stack<int>& s)
+{
+	stack<int> t;
+	while(!s.empty())
+	{
+		int temp = s.top();
+		s.pop();
+		while(!t.empty() && t.top() > temp)
+		{
+			s.push(t.top());
+			t.pop();
+		}
+		t.push(temp);
+	}
+	while(!t.empty())
+	{
+		s.push(t.top());
+		t.pop();
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	int n;
