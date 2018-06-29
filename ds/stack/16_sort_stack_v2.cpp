@@ -16,6 +16,7 @@ void SortedInsert(stack<int>& s, int temp)
 	}
 }
 
+//Sort stack using recursion
 void SortStack(stack<int>& s)
 {
 	if(!s.empty())
@@ -27,6 +28,7 @@ void SortStack(stack<int>& s)
 	}
 }
 
+//Sort stack using stack
 void SortStackUsingStack(stack<int>& s)
 {
 	stack<int> t;
