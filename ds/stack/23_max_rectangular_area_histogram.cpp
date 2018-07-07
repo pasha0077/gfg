@@ -42,6 +42,41 @@ void UsingDCC(int n)
 	cout << GetMinArea(a, 0, n-1);
 }
 
+void UsingStack(int n)
+{
+	int a[n];
+	for(int i = 0; i < n; i++)
+		cin >> a[i];
+	int max = 0, last;
+	stack<int> s;
+	for(int i = 0; i < n; i++)
+	{
+		if(s.empty() || a[s.top()] <= a[i])
+			s.push(i);
+		else
+		{
+			int k = s.top();
+			s.pop();
+			int l = s.empty() ? -1 : s.top();
+			if((i-l-1)*a[k] > max)
+				max = (i-l-1)*a[k];
+			i--;
+		}
+	}
+	
+	if(!s.empty())
+		last = s.top() + 1;
+	while(!s.empty())
+	{
+		int curr = s.top();
+		s.pop();
+		int l = s.empty() ? -1 : s.top();
+		if((last - l - 1)*a[curr] > max)
+			max = (last - l - 1)*a[curr];
+	}
+	cout << max << " " ;
+}
+
 int main(int argc, char* argv[])
 {
 	int t;
@@ -50,8 +85,8 @@ int main(int argc, char* argv[])
 	{
 		int n;
 		cin >> n;
-		UsingDCC(n);
+		//UsingDCC(n);
+		UsingStack(n);
 		cout << "\n";
-		//UsingStack(n);
 	}
 }
